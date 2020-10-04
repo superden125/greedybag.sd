@@ -67,3 +67,11 @@ body {
 .sd-file-choose {
   font-size: 20px;
 }
+
+.sd-icon-type {
+  display: flex;
+}
+
+.sd-icon-type:hover {
+  cursor: pointer;
+}

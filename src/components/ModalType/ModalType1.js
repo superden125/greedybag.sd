@@ -14,7 +14,7 @@ const ModalExample = (props) => {
       <FontAwesomeIcon
         icon="question-circle"
         onClick={toggle}
-        style={{ display: "flex" }}
+        className="sd-icon-type"
       />
 
       <Modal isOpen={modal} toggle={toggle} className={className}>
