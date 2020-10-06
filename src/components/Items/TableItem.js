@@ -10,11 +10,13 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import FlipMove from "react-flip-move";
 
 import { greedy1, greedy2, greedy3 } from "../../greedy";
 import InputFile from "./InputFile";
 import TypeBalo from "./TypeBalo";
 import ButtonControl from "./ButtonControl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function TableItem(props) {
   const [items, setItems] = useState([]);
@@ -220,36 +222,66 @@ function TableItem(props) {
     return false;
   };
 
+  const handleDeleteItem = (index) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setItems(newItems);
+
+    const newErrors = [...errors];
+    newErrors.splice(index, 1);
+    setErrors(newErrors);
+  };
+
+  const notVisibleState = {
+    transform: "translateX(-100%)",
+    opacity: 0.1,
+  };
+
+  const leaveOut = {
+    transform: "translateX(100%)",
+    opacity: 0.1,
+  };
+
+  const leaveState = {
+    opacity: 0,
+  };
+
   return (
     <div>
       <Forms>
         <Row form>
           <Col md={3} className="offset-md-2">
-            <FormGroup>
-              <legend>Weight</legend>
-              <Input
-                style={{ width: "100px" }}
-                type="number"
-                name="weight"
-                id="weight"
-                value={weight.value}
-                onChange={handleWeightChange}
-                onBlur={handleWeightBlur}
-                className={weight.errors && "is-invalid"}
+            <div className="sd-fade-left-right">
+              <FormGroup>
+                <legend>Weight</legend>
+                <Input
+                  style={{ width: "100px" }}
+                  type="number"
+                  name="weight"
+                  id="weight"
+                  value={weight.value}
+                  onChange={handleWeightChange}
+                  onBlur={handleWeightBlur}
+                  className={weight.errors && "is-invalid"}
+                />
+                {weight.errors && (
+                  <span className="invalid-feedback">{weight.errors}</span>
+                )}
+              </FormGroup>
+            </div>
+          </Col>
+          <Col md={3}>
+            <div className="sd-fade-left-right">
+              <TypeBalo onTypeChange={onTypeChange} type={type} />
+            </div>
+          </Col>
+          <Col md={3}>
+            <div className="sd-fade-left-right">
+              <InputFile
+                setWeightFile={setWeightFile}
+                setItemsFile={setItemsFile}
               />
-              {weight.errors && (
-                <span className="invalid-feedback">{weight.errors}</span>
-              )}
-            </FormGroup>
-          </Col>
-          <Col md={3}>
-            <TypeBalo onTypeChange={onTypeChange} type={type} />
-          </Col>
-          <Col md={3}>
-            <InputFile
-              setWeightFile={setWeightFile}
-              setItemsFile={setItemsFile}
-            />
+            </div>
           </Col>
         </Row>
         <ButtonControl
@@ -257,8 +289,9 @@ function TableItem(props) {
           addItem={addItem}
           onSubmit={onSubmit}
         />
-        <h2 className="text-center">Table Items</h2>
-        <Table striped className="table-hover">
+        <h2 className="text-center sd-fade-up-down">Table Items</h2>
+
+        <Table striped className="table-hover sd-fade-up-down">
           <thead>
             <tr>
               <th style={{ width: "500px" }}>Name</th>
@@ -266,9 +299,21 @@ function TableItem(props) {
               <th>Weight</th>
               <th>Stock</th>
               <th>Qty</th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
+          {/* <tbody> */}
+          <FlipMove
+            typeName="tbody"
+            enterAnimation={{
+              from: notVisibleState,
+              to: {},
+            }}
+            leaveAnimation={{
+              from: {},
+              to: leaveOut,
+            }}
+          >
             {items.map((item, index) => (
               <tr key={index}>
                 <td>
@@ -345,9 +390,17 @@ function TableItem(props) {
                     onChange={(e) => handleChange(e, index)}
                   ></Input>
                 </td>
+                <td>
+                  <FontAwesomeIcon
+                    icon="trash-alt"
+                    className="icon-trash"
+                    onClick={() => handleDeleteItem(index)}
+                  />
+                </td>
               </tr>
             ))}
-          </tbody>
+          </FlipMove>
+          {/* </tbody> */}
         </Table>
       </Forms>
     </div>

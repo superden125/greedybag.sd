@@ -43,6 +43,9 @@ body {
   justify-content: center;
   margin: 10px;
   padding: 10px;
+  opacity: 0;
+  animation: fadeDownUp 0.5s 1.5s;
+  animation-fill-mode: forwards;
 }
 
 .sd-btn {
@@ -62,6 +65,9 @@ body {
   letter-spacing: 5px;
   padding: 5px;
   margin-bottom: 50px;
+  opacity: 0;
+  animation: fadeUpDown 1s;
+  animation-fill-mode: forwards;
 }
 
 .sd-file-choose {
@@ -74,4 +80,62 @@ body {
 
 .sd-icon-type:hover {
   cursor: pointer;
+}
+
+.sd-fade-left-right {
+  opacity: 0;
+  animation: fadeLeftRight 0.5s 1s;
+  animation-fill-mode: forwards;
+}
+
+.sd-fade-up-down {
+  opacity: 0;
+  animation: fadeUpDown 0.5s 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.icon-trash {
+  margin-top: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes fadeUpDown {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeDownUp {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeLeftRight {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRightLeft {
+  0% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

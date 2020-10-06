@@ -19,7 +19,8 @@ function App() {
     faFileUpload,
     faTrashAlt,
     faPlusCircle,
-    faUtensils
+    faUtensils,
+    faTrashAlt
   );
   return (
     <div>
