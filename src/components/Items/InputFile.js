@@ -54,7 +54,7 @@ export default function InputFile(props) {
     <FormGroup>
       <legend>File</legend>
       <Label for="file" className="sd-file-choose btn btn-primary">
-        Upload <FontAwesomeIcon icon="file-upload" />
+        <FontAwesomeIcon icon="file-upload" /> Upload
       </Label>
       <Input
         type="file"
