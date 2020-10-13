@@ -31,6 +31,8 @@ function TableItem(props) {
     errors: "",
   });
 
+  const [isGreedy, setIsGreedy] = useState(false);
+
   const initItem = {
     name: "",
     value: "",
@@ -40,9 +42,9 @@ function TableItem(props) {
     time: "",
   };
 
-  // useEffect(() => {
-  //   console.log(items);
-  // }, [items]);
+  useEffect(() => {
+    console.log(items);
+  }, [isGreedy]);
 
   const addItem = () => {
     setItems([...items, initItem]);
@@ -160,16 +162,18 @@ function TableItem(props) {
 
   const onSubmit = () => {
     if (!checkType() && !checkValue()) {
-      console.log(type);
       switch (type.value) {
         case "1":
           setItems(greedy1(items, parseInt(weight.value)));
+          setIsGreedy(true);
           return;
         case "2":
           setItems(greedy2(items, parseInt(weight.value)));
+          setIsGreedy(true);
           return;
         case "3":
           setItems(greedy3(items, parseInt(weight.value)));
+          setIsGreedy(true);
           return;
         default:
           return;
@@ -186,6 +190,7 @@ function TableItem(props) {
       errors: "",
     });
     setType({ ...type, value: 0 });
+    setIsGreedy(false);
   };
 
   const setWeightFile = (value) => {
@@ -399,6 +404,25 @@ function TableItem(props) {
                 </td>
               </tr>
             ))}
+            {isGreedy && (
+              <tr>
+                <td></td>
+                <td>Total Weight</td>
+                <td>
+                  {items.reduce(
+                    (totalWeight, item) => totalWeight + item.qty * item.weight,
+                    0
+                  )}
+                </td>
+                <td>Total Value</td>
+                <td>
+                  {items.reduce(
+                    (totalWeight, item) => totalWeight + item.qty * item.value,
+                    0
+                  )}
+                </td>
+              </tr>
+            )}
           </FlipMove>
           {/* </tbody> */}
         </Table>
