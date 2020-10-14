@@ -3,8 +3,14 @@ import { FormGroup, Input, Label } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function InputFile(props) {
-  const { setWeightFile, setItemsFile } = props;
-  const [fileName, setFileName] = useState();
+  const {
+    setFileNames,
+    fileNames,
+    setIsLoading,
+    setInputFile,
+    disabled,
+  } = props;
+
   const readFile = (e) => {
     if (e !== undefined) {
       if (e.target.files[0] !== undefined) {
@@ -12,10 +18,12 @@ export default function InputFile(props) {
         const items = [];
         const reader = new FileReader();
 
-        setFileName(e.target.files[0].name);
+        setFileNames(e.target.files[0].name);
         reader.onload = async (e) => {
+          setIsLoading(true);
           const text = e.target.result.split(/\r\n|\n/);
-          setWeightFile(parseInt(text[0]));
+          //setWeightFile(parseInt(text[0]));
+          let weight = parseInt(text[0]);
           text.forEach((line, index) => {
             //console.log(line);
             if (index !== 0) {
@@ -43,8 +51,11 @@ export default function InputFile(props) {
             }
           });
 
-          setItemsFile(items);
+          //setItemsFile(items);
+          setInputFile(weight, items);
+          setIsLoading(false);
         };
+
         reader.readAsText(e.target.files[0]);
       }
     }
@@ -62,9 +73,10 @@ export default function InputFile(props) {
         id="file"
         onChange={(e) => readFile(e)}
         style={{ display: "none" }}
+        disabled={disabled}
       />
       <br></br>
-      <Label>{fileName}</Label>
+      <Label>{fileNames}</Label>
     </FormGroup>
   );
 }

@@ -33,6 +33,10 @@ function TableItem(props) {
 
   const [isGreedy, setIsGreedy] = useState(false);
 
+  const [fileName, setFileName] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isHaveFile, setIsHaveFile] = useState(false);
+
   const initItem = {
     name: "",
     value: "",
@@ -42,9 +46,9 @@ function TableItem(props) {
     time: "",
   };
 
-  useEffect(() => {
-    console.log(items);
-  }, [isGreedy]);
+  // useEffect(() => {
+  //   console.log(items);
+  // }, [isGreedy]);
 
   const addItem = () => {
     setItems([...items, initItem]);
@@ -191,18 +195,25 @@ function TableItem(props) {
     });
     setType({ ...type, value: 0 });
     setIsGreedy(false);
-  };
-
-  const setWeightFile = (value) => {
-    setWeight({ ...weight, value: value, errors: "" });
+    setFileName();
+    setIsHaveFile(false);
   };
 
   const setItemsFile = (inputItems) => {
-    setItems([]);
+    setItems(inputItems);
+    setErrors([]);
+
     inputItems.forEach((item) => {
       setErrors((prev) => [...prev, initItem]);
-      setItems((prev) => [...prev, item]);
+      //setItems((prev) => [...prev, item]);
     });
+  };
+
+  const setInputFile = (inputWeight, inputItems) => {
+    clearItem();
+    setWeight({ ...weight, value: inputWeight, errors: "" });
+    setItemsFile(inputItems);
+    setIsHaveFile(true);
   };
 
   const onTypeChange = (e) => {
@@ -237,6 +248,10 @@ function TableItem(props) {
     setErrors(newErrors);
   };
 
+  const setFileNames = (name) => {
+    setFileName(name);
+  };
+
   const notVisibleState = {
     transform: "translateX(-100%)",
     opacity: 0.1,
@@ -251,6 +266,8 @@ function TableItem(props) {
     opacity: 0,
   };
 
+  console.log("re-render", isLoading);
+  console.log(items.length > 0 && "ok");
   return (
     <div>
       <Forms>
@@ -283,8 +300,11 @@ function TableItem(props) {
           <Col md={3}>
             <div className="sd-fade-left-right">
               <InputFile
-                setWeightFile={setWeightFile}
-                setItemsFile={setItemsFile}
+                setFileNames={setFileNames}
+                fileNames={fileName}
+                setIsLoading={setIsLoading}
+                setInputFile={setInputFile}
+                disabled={isHaveFile}
               />
             </div>
           </Col>
@@ -319,105 +339,106 @@ function TableItem(props) {
               to: leaveOut,
             }}
           >
-            {items.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <Input
-                    type="text"
-                    id="name"
-                    value={item ? item.name : null}
-                    name="name"
-                    onChange={(e) => handleChange(e, index)}
-                    onBlur={handleBlur(index)}
-                    className={
-                      errors[index] && errors[index].name && "is-invalid"
-                    }
-                  ></Input>
-                  {errors[index].name && (
-                    <span className="invalid-feedback">
-                      {errors[index].name}
-                    </span>
-                  )}
-                </td>
-                <td>
-                  <Input
-                    type="text"
-                    value={item.value}
-                    name="value"
-                    // type="number"
-                    onChange={(e) => handleChange(e, index)}
-                    onBlur={handleBlur(index)}
-                    className={errors[index].value && "is-invalid"}
-                  ></Input>
-                  {errors[index].value && (
-                    <span className="invalid-feedback">
-                      {errors[index].value}
-                    </span>
-                  )}
-                </td>
-                <td>
-                  <Input
-                    type="text"
-                    value={item.weight}
-                    name="weight"
-                    onChange={(e) => handleChange(e, index)}
-                    onBlur={handleBlur(index)}
-                    className={errors[index].weight && "is-invalid"}
-                  ></Input>
-                  {errors[index].weight && (
-                    <span className="invalid-feedback">
-                      {errors[index].weight}
-                    </span>
-                  )}
-                </td>
-                <td>
-                  <Input
-                    type="text"
-                    value={item.stock}
-                    name="stock"
-                    onChange={(e) => handleChange(e, index)}
-                    onBlur={handleBlur(index)}
-                    className={errors[index].stock && "is-invalid"}
-                    disabled={type.value !== "2" ? true : false}
-                  ></Input>
-                  {errors[index].stock && (
-                    <span className="invalid-feedback">
-                      {errors[index].stock}
-                    </span>
-                  )}
-                </td>
-                <td>
-                  <Input
-                    type="text"
-                    disabled
-                    value={item.qty}
-                    name="qty"
-                    onChange={(e) => handleChange(e, index)}
-                  ></Input>
-                </td>
-                <td>
-                  <FontAwesomeIcon
-                    icon="trash-alt"
-                    className="icon-trash"
-                    onClick={() => handleDeleteItem(index)}
-                  />
-                </td>
-              </tr>
-            ))}
+            {items.length > 0 &&
+              !isLoading &&
+              items.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <Input
+                      type="text"
+                      id="name"
+                      value={item.name ? item.name : null}
+                      name="name"
+                      onChange={(e) => handleChange(e, index)}
+                      onBlur={handleBlur(index)}
+                      className={
+                        errors[index] && errors[index].name && "is-invalid"
+                      }
+                    ></Input>
+                    {errors[index].name && (
+                      <span className="invalid-feedback">
+                        {errors[index].name}
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    <Input
+                      type="text"
+                      value={item.value}
+                      name="value"
+                      // type="number"
+                      onChange={(e) => handleChange(e, index)}
+                      onBlur={handleBlur(index)}
+                      className={errors[index].value && "is-invalid"}
+                    ></Input>
+                    {errors[index].value && (
+                      <span className="invalid-feedback">
+                        {errors[index].value}
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    <Input
+                      type="text"
+                      value={item.weight}
+                      name="weight"
+                      onChange={(e) => handleChange(e, index)}
+                      onBlur={handleBlur(index)}
+                      className={errors[index].weight && "is-invalid"}
+                    ></Input>
+                    {errors[index].weight && (
+                      <span className="invalid-feedback">
+                        {errors[index].weight}
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    <Input
+                      type="text"
+                      value={item.stock}
+                      name="stock"
+                      onChange={(e) => handleChange(e, index)}
+                      onBlur={handleBlur(index)}
+                      className={errors[index].stock && "is-invalid"}
+                      disabled={type.value !== "2" ? true : false}
+                    ></Input>
+                    {errors[index].stock && (
+                      <span className="invalid-feedback">
+                        {errors[index].stock}
+                      </span>
+                    )}
+                  </td>
+                  <td>
+                    <Input
+                      type="text"
+                      disabled
+                      value={item.qty}
+                      name="qty"
+                      onChange={(e) => handleChange(e, index)}
+                    ></Input>
+                  </td>
+                  <td>
+                    <FontAwesomeIcon
+                      icon="trash-alt"
+                      className="icon-trash"
+                      onClick={() => handleDeleteItem(index)}
+                    />
+                  </td>
+                </tr>
+              ))}
             {isGreedy && (
-              <tr>
-                <td></td>
-                <td>Total Weight</td>
-                <td>
-                  {items.reduce(
-                    (totalWeight, item) => totalWeight + item.qty * item.weight,
-                    0
-                  )}
-                </td>
-                <td>Total Value</td>
+              <tr className="sd-total-row">
+                <td className="sd-total-title">Total:</td>
                 <td>
                   {items.reduce(
                     (totalWeight, item) => totalWeight + item.qty * item.value,
+                    0
+                  )}
+                </td>
+
+                <td>
+                  {items.reduce(
+                    (totalWeight, item) => totalWeight + item.qty * item.weight,
                     0
                   )}
                 </td>
