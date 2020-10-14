@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/greedybag.sd/static/css/main.d1b23f4a.chunk.css",
-    "main.js": "/greedybag.sd/static/js/main.af8fc6ac.chunk.js",
-    "main.js.map": "/greedybag.sd/static/js/main.af8fc6ac.chunk.js.map",
+    "main.js": "/greedybag.sd/static/js/main.327ef970.chunk.js",
+    "main.js.map": "/greedybag.sd/static/js/main.327ef970.chunk.js.map",
     "runtime-main.js": "/greedybag.sd/static/js/runtime-main.16df056c.js",
     "runtime-main.js.map": "/greedybag.sd/static/js/runtime-main.16df056c.js.map",
     "static/css/2.d9ad5f5c.chunk.css": "/greedybag.sd/static/css/2.d9ad5f5c.chunk.css",
     "static/js/2.03f901cd.chunk.js": "/greedybag.sd/static/js/2.03f901cd.chunk.js",
     "static/js/2.03f901cd.chunk.js.map": "/greedybag.sd/static/js/2.03f901cd.chunk.js.map",
     "index.html": "/greedybag.sd/index.html",
-    "precache-manifest.b51f07c5c50aa9a96acc91094299e7e9.js": "/greedybag.sd/precache-manifest.b51f07c5c50aa9a96acc91094299e7e9.js",
+    "precache-manifest.c8550dba43cf014f134d4de3b35d04c4.js": "/greedybag.sd/precache-manifest.c8550dba43cf014f134d4de3b35d04c4.js",
     "service-worker.js": "/greedybag.sd/service-worker.js",
     "static/css/2.d9ad5f5c.chunk.css.map": "/greedybag.sd/static/css/2.d9ad5f5c.chunk.css.map",
     "static/css/main.d1b23f4a.chunk.css.map": "/greedybag.sd/static/css/main.d1b23f4a.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.d9ad5f5c.chunk.css",
     "static/js/2.03f901cd.chunk.js",
     "static/css/main.d1b23f4a.chunk.css",
-    "static/js/main.af8fc6ac.chunk.js"
+    "static/js/main.327ef970.chunk.js"
   ]
 }
