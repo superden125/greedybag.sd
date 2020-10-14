@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import { Button, FormGroup, Input, Label } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 
 export default function InputFile(props) {
   const {
@@ -17,7 +18,6 @@ export default function InputFile(props) {
         e.preventDefault();
         const items = [];
         const reader = new FileReader();
-
         setFileNames(e.target.files[0].name);
         reader.onload = async (e) => {
           setIsLoading(true);
@@ -64,9 +64,16 @@ export default function InputFile(props) {
   return (
     <FormGroup>
       <legend>File</legend>
-      <Label for="file" className="sd-file-choose btn btn-primary">
+      <Label
+        for="file"
+        // className="sd-file-choose btn btn-primary disabled"
+        className={classNames("sd-file-choose btn btn-primary", {
+          disabled: disabled,
+        })}
+      >
         <FontAwesomeIcon icon="file-upload" /> Upload
       </Label>
+
       <Input
         type="file"
         name="file"
