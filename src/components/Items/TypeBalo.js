@@ -15,18 +15,13 @@ export default function TypeBalo(props) {
               name="radio1"
               value="1"
               onChange={(e) => onTypeChange(e)}
+              checked={type.value && type.value === "1"}
             />{" "}
             Balo1
           </Label>
           <ModalType1
             title="Balo 1"
-            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+            content="Mỗi đồ vật được chọn với số lượng không giới hạn."
           />
         </FormGroup>
         <FormGroup check>
@@ -36,18 +31,13 @@ export default function TypeBalo(props) {
               name="radio1"
               value="2"
               onChange={(e) => onTypeChange(e)}
+              checked={type.value && type.value === "2"}
             />{" "}
             Balo2
           </Label>
           <ModalType1
             title="Balo 2"
-            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+            content="Mỗi đồ vật được chọn với số lượng tối đa với số lượng hiện có"
           />
         </FormGroup>
         <FormGroup check>
@@ -57,18 +47,13 @@ export default function TypeBalo(props) {
               name="radio1"
               value="3"
               onChange={(e) => onTypeChange(e)}
+              checked={type.value && type.value === "3"}
             />{" "}
             Balo3
           </Label>
           <ModalType1
             title="Balo 3"
-            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+            content="Mỗi đồ vật được chọn với số lượng tối đa là 1"
           />
         </FormGroup>
       </div>

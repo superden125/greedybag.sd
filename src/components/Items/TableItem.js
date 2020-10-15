@@ -33,7 +33,8 @@ function TableItem(props) {
 
   const [isGreedy, setIsGreedy] = useState(false);
 
-  const [fileName, setFileName] = useState();
+  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isHaveFile, setIsHaveFile] = useState(false);
 
@@ -51,6 +52,7 @@ function TableItem(props) {
   // }, [isGreedy]);
 
   const addItem = () => {
+    setIsGreedy(false);
     setItems([...items, initItem]);
     setErrors([...errors, initItem]);
   };
@@ -196,6 +198,7 @@ function TableItem(props) {
     setType({ ...type, value: 0 });
     setIsGreedy(false);
     setFileName();
+    setFile("");
     setIsHaveFile(false);
   };
 
@@ -210,7 +213,9 @@ function TableItem(props) {
   };
 
   const setInputFile = (inputWeight, inputItems) => {
-    clearItem();
+    //clearItem();
+    setFile("");
+    setIsGreedy(false);
     setWeight({ ...weight, value: inputWeight, errors: "" });
     setItemsFile(inputItems);
     setIsHaveFile(true);
@@ -248,10 +253,6 @@ function TableItem(props) {
     setErrors(newErrors);
   };
 
-  const setFileNames = (name) => {
-    setFileName(name);
-  };
-
   const notVisibleState = {
     transform: "translateX(-100%)",
     opacity: 0.1,
@@ -266,8 +267,6 @@ function TableItem(props) {
     opacity: 0,
   };
 
-  console.log("re-render", isLoading);
-  console.log(items.length > 0 && "ok");
   return (
     <div>
       <Forms>
@@ -300,10 +299,12 @@ function TableItem(props) {
           <Col md={3}>
             <div className="sd-fade-left-right">
               <InputFile
-                setFileNames={setFileNames}
+                setFileName={setFileName}
                 fileNames={fileName}
                 setIsLoading={setIsLoading}
                 setInputFile={setInputFile}
+                file={file}
+                setFile={setFile}
                 disabled={isHaveFile}
               />
             </div>

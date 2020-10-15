@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { Button, FormGroup, Input, Label } from "reactstrap";
+import React from "react";
+import { FormGroup, Input, Label } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 
 export default function InputFile(props) {
   const {
-    setFileNames,
+    setFileName,
     fileNames,
     setIsLoading,
     setInputFile,
+    file,
+    setFile,
     disabled,
   } = props;
 
@@ -18,11 +20,12 @@ export default function InputFile(props) {
         e.preventDefault();
         const items = [];
         const reader = new FileReader();
-        setFileNames(e.target.files[0].name);
+        setFileName(e.target.files[0].name);
+        setFile(e.target.value);
+        console.log(e.target.value);
         reader.onload = async (e) => {
           setIsLoading(true);
           const text = e.target.result.split(/\r\n|\n/);
-          //setWeightFile(parseInt(text[0]));
           let weight = parseInt(text[0]);
           text.forEach((line, index) => {
             //console.log(line);
@@ -80,6 +83,7 @@ export default function InputFile(props) {
         id="file"
         onChange={(e) => readFile(e)}
         style={{ display: "none" }}
+        value={file}
         disabled={disabled}
       />
       <br></br>
