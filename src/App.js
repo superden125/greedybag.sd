@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Items from "./components/Items";
 import Headers from "./components/Headers";
+import Footers from "./components/Footers";
 
 function App() {
   library.add(
@@ -26,6 +27,7 @@ function App() {
     <div>
       <Headers />
       <Items />
+      <Footers />
     </div>
   );
 }

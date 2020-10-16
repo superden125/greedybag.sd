@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 
 function index(props) {
   return (
-    <Container>
+    <Container className="sd-content">
       <TableItem />
     </Container>
   );
