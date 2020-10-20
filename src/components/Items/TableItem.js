@@ -216,7 +216,7 @@ function TableItem(props) {
     //clearItem();
     setFile("");
     setIsGreedy(false);
-    setWeight({ ...weight, value: inputWeight, errors: "" });
+    inputWeight > 0 && setWeight({ ...weight, value: inputWeight, errors: "" });
     setItemsFile(inputItems);
     setIsHaveFile(true);
   };

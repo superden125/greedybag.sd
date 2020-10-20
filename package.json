@@ -18,7 +18,8 @@
     "react-dom": "^16.13.1",
     "react-flip-move": "^3.0.4",
     "react-scripts": "3.4.3",
-    "reactstrap": "^8.6.0"
+    "reactstrap": "^8.6.0",
+    "xlsx": "^0.16.8"
   },
   "scripts": {
     "predeploy": "npm run build",
