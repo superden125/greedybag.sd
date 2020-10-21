@@ -18,7 +18,7 @@ export default function InputFile(props) {
     disabled,
   } = props;
 
-  const fileUpload = useRef(null);
+  const fileUpload = React.useRef(null);
 
   const getExtFile = (filename) => {
     let last_dot = filename.lastIndexOf(".");
@@ -136,7 +136,9 @@ export default function InputFile(props) {
     FileSaver.saveAs(data, fileName + fileExtension);
   };
 
-  console.log(isGreedy);
+  const handleUploadFile = () => {
+    fileUpload.current.click();
+  };
 
   return (
     <FormGroup>
@@ -148,16 +150,27 @@ export default function InputFile(props) {
           disabled: disabled,
         })}
       >
-        <FontAwesomeIcon icon="file-upload" /> Upload
+        {/* <FontAwesomeIcon icon="file-upload" /> Upload */}
+        <span className="sd-file-upload">
+          <FontAwesomeIcon icon="file-upload" />
+          Upload
+        </span>
       </Label>
 
       {/* <Button
         className="sd-file-choose sd-btn btn btn-danger"
-        onClick={() => console.log(fileUpload.current)}
+        onClick={handleUploadFile}
       >
         <FontAwesomeIcon icon="file-download" />
         Upload
       </Button> */}
+
+      {/* <label htmlFor="file" className="sd-file-choose sd-btn btn btn-primary">
+        <span className="sd-file-upload">
+          <FontAwesomeIcon icon="file-upload" />
+          Upload
+        </span>
+      </label> */}
 
       <Input
         type="file"

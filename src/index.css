@@ -78,7 +78,14 @@ body {
 }
 
 .sd-file-choose {
+  position: relative;
   margin-left: 0;
+}
+
+.sd-file-upload {
+  position: absolute;
+  left: 30px;
+  margin: 5px auto;
 }
 
 .sd-icon-type {
