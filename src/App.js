@@ -8,6 +8,7 @@ import {
   faTrashAlt,
   faPlusCircle,
   faUtensils,
+  faFileDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import Items from "./components/Items";
 import Headers from "./components/Headers";
@@ -21,7 +22,8 @@ function App() {
     faTrashAlt,
     faPlusCircle,
     faUtensils,
-    faTrashAlt
+    faTrashAlt,
+    faFileDownload
   );
   return (
     <div>

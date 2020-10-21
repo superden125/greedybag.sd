@@ -301,6 +301,8 @@ function TableItem(props) {
               <InputFile
                 setFileName={setFileName}
                 fileNames={fileName}
+                items={items}
+                isGreedy={isGreedy}
                 setIsLoading={setIsLoading}
                 setInputFile={setInputFile}
                 file={file}

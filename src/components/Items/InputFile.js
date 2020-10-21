@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
 import * as XLSX from "xlsx";
-import { FormGroup, Input, Label } from "reactstrap";
+import * as FileSaver from "file-saver";
+import { FormGroup, Input, Label, Button } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function InputFile(props) {
@@ -12,8 +13,12 @@ export default function InputFile(props) {
     setInputFile,
     file,
     setFile,
+    items,
+    isGreedy,
     disabled,
   } = props;
+
+  const fileUpload = useRef(null);
 
   const getExtFile = (filename) => {
     let last_dot = filename.lastIndexOf(".");
@@ -120,18 +125,39 @@ export default function InputFile(props) {
     }
   };
 
+  const exportToCSV = (csvData, fileName) => {
+    const fileType =
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+    const fileExtension = ".xlsx";
+    const ws = XLSX.utils.json_to_sheet(csvData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  };
+
+  console.log(isGreedy);
+
   return (
     <FormGroup>
       <legend>File</legend>
       <Label
         for="file"
         // className="sd-file-choose btn btn-primary disabled"
-        className={classNames("sd-file-choose btn btn-primary", {
+        className={classNames("sd-file-choose sd-btn btn btn-primary", {
           disabled: disabled,
         })}
       >
         <FontAwesomeIcon icon="file-upload" /> Upload
       </Label>
+
+      {/* <Button
+        className="sd-file-choose sd-btn btn btn-danger"
+        onClick={() => console.log(fileUpload.current)}
+      >
+        <FontAwesomeIcon icon="file-download" />
+        Upload
+      </Button> */}
 
       <Input
         type="file"
@@ -141,9 +167,19 @@ export default function InputFile(props) {
         style={{ display: "none" }}
         value={file}
         disabled={disabled}
+        ref={fileUpload}
       />
       <br></br>
       <Label>{fileNames}</Label>
+      <br />
+      <Button
+        className="sd-file-choose sd-btn btn btn-danger"
+        onClick={() => exportToCSV(items, "result")}
+        disabled={!isGreedy}
+      >
+        <FontAwesomeIcon icon="file-download" />
+        Export
+      </Button>
     </FormGroup>
   );
 }
