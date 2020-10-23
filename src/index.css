@@ -65,12 +65,52 @@ body {
   font-size: 16px;
 }
 
+.sd-nav {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #121212;
+}
+
+.sd-logo {
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 10rem;
+}
+
+.sd-nav ul {
+  list-style-type: none;
+  display: flex;
+  position: absolute;
+  right: 2rem;
+  width: 10%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  margin: 15px 0;
+}
+
+.sd-nav li {
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.5s;
+  padding: 15px 0;
+}
+
+.sd-nav li:hover {
+  color: #ff0f00;
+}
+
 .sd-header {
   font-family: Play-Bold, Arial, Helvetica, sans-serif;
   font-size: 3rem;
   text-align: center;
   letter-spacing: 5px;
   padding: 5px;
+  margin-top: 20px;
   margin-bottom: 50px;
   opacity: 0;
   animation: fadeUpDown 1s;
@@ -85,7 +125,7 @@ body {
 .sd-file-upload {
   position: absolute;
   left: 30px;
-  margin: 5px auto;
+  margin: 7px auto;
 }
 
 .sd-icon-type {

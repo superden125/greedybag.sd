@@ -14,11 +14,12 @@ function sort(items) {
 }
 
 function greedy1(itemsList, weight) {
-  //sort(items);
+  const items = [...itemsList];
+  sort(items);
 
-  const items = itemsList.slice().sort((a, b) => {
-    return b.value / b.weight - a.value / a.weight;
-  });
+  // const items = itemsList.slice().sort((a, b) => {
+  //   return b.value / b.weight - a.value / a.weight;
+  // });
 
   items.forEach((item) => {
     item.qty = parseInt(weight / item.weight);
@@ -28,11 +29,12 @@ function greedy1(itemsList, weight) {
 }
 
 function greedy2(itemsList, weight) {
-  //sort(items);
+  const items = [...itemsList];
+  sort(items);
 
-  const items = itemsList.slice().sort((a, b) => {
-    return b.value / b.weight - a.value / a.weight;
-  });
+  // const items = itemsList.slice().sort((a, b) => {
+  //   return b.value / b.weight - a.value / a.weight;
+  // });
 
   items.forEach((item) => {
     item.qty = parseInt(weight / item.weight);
@@ -45,11 +47,12 @@ function greedy2(itemsList, weight) {
 }
 
 function greedy3(itemsList, weight) {
-  //sort(items);
+  const items = [...itemsList];
+  sort(items);
 
-  const items = itemsList.slice().sort((a, b) => {
-    return b.value / b.weight - a.value / a.weight;
-  });
+  // const items = itemsList.slice().sort((a, b) => {
+  //   return b.value / b.weight - a.value / a.weight;
+  // });
 
   items.forEach((item) => {
     item.qty = parseInt(weight / item.weight);

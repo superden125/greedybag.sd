@@ -44,7 +44,7 @@ function TableItem(props) {
     weight: "",
     stock: "",
     qty: "",
-    time: "",
+    // time: "",
   };
 
   // useEffect(() => {
@@ -226,11 +226,6 @@ function TableItem(props) {
       value: e.target.value,
       errors: "",
     });
-    // let n = errors.length;
-    // setErrors([]);
-    // for (var i = 0; i < n; i++) {
-    //   setErrors([...errors, initItem]);
-    // }
   };
 
   const checkType = () => {
@@ -251,6 +246,20 @@ function TableItem(props) {
     const newErrors = [...errors];
     newErrors.splice(index, 1);
     setErrors(newErrors);
+  };
+
+  const totalValue = (items) => {
+    return items.reduce(
+      (totalWeight, item) => totalWeight + item.qty * item.value,
+      0
+    );
+  };
+
+  const totalWeight = (items) => {
+    return items.reduce(
+      (totalWeight, item) => totalWeight + item.qty * item.weight,
+      0
+    );
   };
 
   const notVisibleState = {
@@ -307,6 +316,10 @@ function TableItem(props) {
                 setInputFile={setInputFile}
                 file={file}
                 setFile={setFile}
+                inputWeight={weight.value}
+                type={type.value}
+                totalValue={totalValue}
+                totalWeight={totalWeight}
                 disabled={isHaveFile}
               />
             </div>
@@ -432,19 +445,9 @@ function TableItem(props) {
             {isGreedy && (
               <tr className="sd-total-row">
                 <td className="sd-total-title">Total:</td>
-                <td>
-                  {items.reduce(
-                    (totalWeight, item) => totalWeight + item.qty * item.value,
-                    0
-                  )}
-                </td>
+                <td>{totalValue(items)}</td>
 
-                <td>
-                  {items.reduce(
-                    (totalWeight, item) => totalWeight + item.qty * item.weight,
-                    0
-                  )}
-                </td>
+                <td>{totalWeight(items)}</td>
               </tr>
             )}
           </FlipMove>

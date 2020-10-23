@@ -13,6 +13,7 @@ import {
 import Items from "./components/Items";
 import Headers from "./components/Headers";
 import Footers from "./components/Footers";
+import Navbars from "./components/Navbar";
 
 function App() {
   library.add(
@@ -27,6 +28,7 @@ function App() {
   );
   return (
     <div>
+      <Navbars />
       <Headers />
       <Items />
       <Footers />

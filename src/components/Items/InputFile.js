@@ -11,10 +11,14 @@ export default function InputFile(props) {
     fileNames,
     setIsLoading,
     setInputFile,
+    totalWeight,
+    totalValue,
     file,
     setFile,
     items,
     isGreedy,
+    inputWeight,
+    type,
     disabled,
   } = props;
 
@@ -55,7 +59,6 @@ export default function InputFile(props) {
             weight: cell[1],
             stock: stock,
             qty: "",
-            time: "",
           });
         }
       });
@@ -71,7 +74,6 @@ export default function InputFile(props) {
     const items = [];
     reader.onload = async (e) => {
       setIsLoading(true);
-      console.log("load");
 
       /* Parse data */
       const bstr = e.target.result;
@@ -91,7 +93,6 @@ export default function InputFile(props) {
           weight: data[i][2],
           stock: data[i][3] % 1 === 0 ? data[i][3] : "",
           qty: "",
-          time: "",
         });
       }
       setInputFile(0, items);
@@ -125,19 +126,31 @@ export default function InputFile(props) {
     }
   };
 
-  const exportToCSV = (csvData, fileName) => {
+  const exportToCSV = (items, fileName) => {
+    let csvData = [...items];
+    const ttValue = totalValue(csvData);
+    const ttWeight = totalWeight(csvData);
+    csvData.push({
+      name: "Input Weight:",
+      value: inputWeight,
+      weight: "Type:",
+      stock: type,
+    });
+    csvData.push({
+      name: "Total:",
+      value: ttValue,
+      weight: ttWeight,
+    });
+
     const fileType =
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
     const fileExtension = ".xlsx";
     const ws = XLSX.utils.json_to_sheet(csvData);
+
     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: fileType });
     FileSaver.saveAs(data, fileName + fileExtension);
-  };
-
-  const handleUploadFile = () => {
-    fileUpload.current.click();
   };
 
   return (
@@ -145,32 +158,15 @@ export default function InputFile(props) {
       <legend>File</legend>
       <Label
         for="file"
-        // className="sd-file-choose btn btn-primary disabled"
         className={classNames("sd-file-choose sd-btn btn btn-primary", {
           disabled: disabled,
         })}
       >
-        {/* <FontAwesomeIcon icon="file-upload" /> Upload */}
         <span className="sd-file-upload">
           <FontAwesomeIcon icon="file-upload" />
           Upload
         </span>
       </Label>
-
-      {/* <Button
-        className="sd-file-choose sd-btn btn btn-danger"
-        onClick={handleUploadFile}
-      >
-        <FontAwesomeIcon icon="file-download" />
-        Upload
-      </Button> */}
-
-      {/* <label htmlFor="file" className="sd-file-choose sd-btn btn btn-primary">
-        <span className="sd-file-upload">
-          <FontAwesomeIcon icon="file-upload" />
-          Upload
-        </span>
-      </label> */}
 
       <Input
         type="file"
