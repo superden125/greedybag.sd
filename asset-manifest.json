@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/greedybag.sd/static/css/main.8ecb2ffa.chunk.css",
-    "main.js": "/greedybag.sd/static/js/main.62a4dedb.chunk.js",
-    "main.js.map": "/greedybag.sd/static/js/main.62a4dedb.chunk.js.map",
+    "main.css": "/greedybag.sd/static/css/main.8057b1f7.chunk.css",
+    "main.js": "/greedybag.sd/static/js/main.f120352b.chunk.js",
+    "main.js.map": "/greedybag.sd/static/js/main.f120352b.chunk.js.map",
     "runtime-main.js": "/greedybag.sd/static/js/runtime-main.16df056c.js",
     "runtime-main.js.map": "/greedybag.sd/static/js/runtime-main.16df056c.js.map",
     "static/css/2.d9ad5f5c.chunk.css": "/greedybag.sd/static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.195be822.chunk.js": "/greedybag.sd/static/js/2.195be822.chunk.js",
-    "static/js/2.195be822.chunk.js.map": "/greedybag.sd/static/js/2.195be822.chunk.js.map",
+    "static/js/2.ab398393.chunk.js": "/greedybag.sd/static/js/2.ab398393.chunk.js",
+    "static/js/2.ab398393.chunk.js.map": "/greedybag.sd/static/js/2.ab398393.chunk.js.map",
     "index.html": "/greedybag.sd/index.html",
-    "precache-manifest.5e6dfaf4ed7cafee4fc720f9fbfc0ce5.js": "/greedybag.sd/precache-manifest.5e6dfaf4ed7cafee4fc720f9fbfc0ce5.js",
+    "precache-manifest.13b3cd5af380709ace24ba47dc2b3b89.js": "/greedybag.sd/precache-manifest.13b3cd5af380709ace24ba47dc2b3b89.js",
     "service-worker.js": "/greedybag.sd/service-worker.js",
     "static/css/2.d9ad5f5c.chunk.css.map": "/greedybag.sd/static/css/2.d9ad5f5c.chunk.css.map",
-    "static/css/main.8ecb2ffa.chunk.css.map": "/greedybag.sd/static/css/main.8ecb2ffa.chunk.css.map",
-    "static/js/2.195be822.chunk.js.LICENSE.txt": "/greedybag.sd/static/js/2.195be822.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/greedybag.sd/static/media/Play-Regular.e9e488dd.ttf"
+    "static/css/main.8057b1f7.chunk.css.map": "/greedybag.sd/static/css/main.8057b1f7.chunk.css.map",
+    "static/js/2.ab398393.chunk.js.LICENSE.txt": "/greedybag.sd/static/js/2.ab398393.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/greedybag.sd/static/media/Play-Regular.e9e488dd.ttf",
+    "static/media/file-excel.png": "/greedybag.sd/static/media/file-excel.062105a4.png"
   },
   "entrypoints": [
     "static/js/runtime-main.16df056c.js",
     "static/css/2.d9ad5f5c.chunk.css",
-    "static/js/2.195be822.chunk.js",
-    "static/css/main.8ecb2ffa.chunk.css",
-    "static/js/main.62a4dedb.chunk.js"
+    "static/js/2.ab398393.chunk.js",
+    "static/css/main.8057b1f7.chunk.css",
+    "static/js/main.f120352b.chunk.js"
   ]
 }
