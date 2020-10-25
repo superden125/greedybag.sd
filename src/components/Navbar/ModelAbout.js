@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const ModalExample = (props) => {
-  const { className, title } = props;
+  const { className } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -10,7 +10,7 @@ const ModalExample = (props) => {
 
   return (
     <div>
-      <span onClick={toggle}>{title}</span>
+      <span onClick={toggle}>Giới Thiệu</span>
 
       <Modal
         isOpen={modal}
@@ -19,7 +19,10 @@ const ModalExample = (props) => {
         size="lg"
         style={{ maxWidth: "1600px", width: "80%" }}
       >
-        <ModalHeader toggle={toggle}>{title}</ModalHeader>
+        <ModalHeader toggle={toggle} className="sd-modal-about">
+          <h2>Trường Đại Học Cần Thơ</h2>
+          <h2>Khoa Công Nghệ Thông Tin & Truyền Thông</h2>
+        </ModalHeader>
         <ModalBody className="sd-modal-about">
           <h2>Niên luận cơ sở ngành KTPM</h2>
           <div>
@@ -43,23 +46,27 @@ const ModalExample = (props) => {
 
             <p>Mục tiêu niên luận:</p>
             <ul>
-              <li>- Sử dụng giải thuật Tham lam để giải bài toán đặt ra.</li>
+              <li>Sử dụng giải thuật Tham lam để giải bài toán đặt ra.</li>
               <li>
-                - Sử dụng ngôn ngữ Java (hoặc C hoặc .NET, v.v.) để cài đặt giải
+                Sử dụng ngôn ngữ Java (hoặc C hoặc .NET, v.v.) để cài đặt giải
                 thuật.
               </li>
               <li>
-                - Giao diện thân thiện: Dùng bàn phím, chuột và các tập tin văn
+                Giao diện thân thiện: Dùng bàn phím, chuột và các tập tin văn
                 bản để lấy dữ liệu ban đầu và xuất kết quả ra.
               </li>
             </ul>
           </div>
 
-          <div>
-            <h4>Sinh viên thực hiện:</h4>
-            <p>Triệu Đức Minh - B1704835</p>
-            <h4>Giáo viên hướng dẫn:</h4>
-            <p>TS. Nguyễn Công Danh</p>
+          <div className="sd-modal-info">
+            <div className="sd-modal-student">
+              <h4>Sinh viên thực hiện:</h4>
+              <p>Triệu Đức Minh - B1704835</p>
+            </div>
+            <div className="sd-modal-teacher">
+              <h4>Giáo viên hướng dẫn:</h4>
+              <p>TS. Nguyễn Công Danh</p>
+            </div>
           </div>
         </ModalBody>
         <ModalFooter>

@@ -6,7 +6,7 @@ export default function TypeBalo(props) {
   const { onTypeChange, type } = props;
   return (
     <FormGroup tag="fieldset">
-      <legend>Type</legend>
+      <legend>Loại</legend>
       <div className="form-type">
         <FormGroup check>
           <Label check className="form-type-items">
@@ -17,10 +17,10 @@ export default function TypeBalo(props) {
               onChange={(e) => onTypeChange(e)}
               checked={type.value && type.value === "1"}
             />{" "}
-            Balo1
+            Ba lô 1
           </Label>
           <ModalType1
-            title="Balo 1"
+            title="Ba lô 1"
             content="Mỗi đồ vật được chọn với số lượng không giới hạn."
           />
         </FormGroup>
@@ -33,10 +33,10 @@ export default function TypeBalo(props) {
               onChange={(e) => onTypeChange(e)}
               checked={type.value && type.value === "2"}
             />{" "}
-            Balo2
+            Ba lô 2
           </Label>
           <ModalType1
-            title="Balo 2"
+            title="Ba lô 2"
             content="Mỗi đồ vật được chọn với số lượng tối đa với số lượng hiện có"
           />
         </FormGroup>
@@ -49,10 +49,10 @@ export default function TypeBalo(props) {
               onChange={(e) => onTypeChange(e)}
               checked={type.value && type.value === "3"}
             />{" "}
-            Balo3
+            Ba lô 3
           </Label>
           <ModalType1
-            title="Balo 3"
+            title="Ba lô 3"
             content="Mỗi đồ vật được chọn với số lượng tối đa là 1"
           />
         </FormGroup>

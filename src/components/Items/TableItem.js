@@ -283,7 +283,7 @@ function TableItem(props) {
           <Col md={3} className="offset-md-2">
             <div className="sd-fade-left-right">
               <FormGroup>
-                <legend>Weight</legend>
+                <legend>Trọng Lượng</legend>
                 <Input
                   style={{ width: "100px" }}
                   type="number"
@@ -330,16 +330,16 @@ function TableItem(props) {
           addItem={addItem}
           onSubmit={onSubmit}
         />
-        <h2 className="text-center sd-fade-up-down">Table Items</h2>
+        <h2 className="text-center sd-fade-up-down">Danh Sách Đồ Vật</h2>
 
         <Table striped className="table-hover sd-fade-up-down">
           <thead>
             <tr>
-              <th style={{ width: "500px" }}>Name</th>
-              <th>Value</th>
-              <th>Weight</th>
-              <th>Stock</th>
-              <th>Qty</th>
+              <th style={{ width: "500px" }}>Tên đồ vật</th>
+              <th>Giá trị</th>
+              <th>Trọng lượng</th>
+              <th>Số lượng hiện có</th>
+              <th>Số lượng lấy</th>
               <th></th>
             </tr>
           </thead>

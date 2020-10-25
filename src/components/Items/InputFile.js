@@ -163,8 +163,8 @@ export default function InputFile(props) {
         })}
       >
         <span className="sd-file-upload">
-          <FontAwesomeIcon icon="file-upload" />
-          Upload
+          <FontAwesomeIcon icon="file-upload" className="sd-icon" />
+          Thêm File
         </span>
       </Label>
 
@@ -186,8 +186,8 @@ export default function InputFile(props) {
         onClick={() => exportToCSV(items, "result")}
         disabled={!isGreedy}
       >
-        <FontAwesomeIcon icon="file-download" />
-        Export
+        <FontAwesomeIcon icon="file-download" className="sd-icon" />
+        Xuất file
       </Button>
     </FormGroup>
   );

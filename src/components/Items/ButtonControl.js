@@ -7,13 +7,13 @@ export default function ButtonControl(props) {
   return (
     <div className="button-control">
       <Button onClick={() => clearItem()} color="danger" className="sd-btn">
-        <FontAwesomeIcon icon="trash-alt" /> Clear
+        <FontAwesomeIcon icon="trash-alt" /> Xoá
       </Button>{" "}
       <Button onClick={() => addItem()} color="info" className="sd-btn">
-        <FontAwesomeIcon icon="plus-circle" /> Add Item
+        <FontAwesomeIcon icon="plus-circle" /> Thêm
       </Button>{" "}
       <Button onClick={onSubmit} color="success" className="sd-btn">
-        <FontAwesomeIcon icon="utensils" /> Greedy
+        <FontAwesomeIcon icon="utensils" /> Tham Ăn
       </Button>
     </div>
   );

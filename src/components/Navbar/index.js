@@ -1,5 +1,6 @@
 import React from "react";
 import ModalAbout from "./ModelAbout";
+import ModalHelp from "./ModalHelp";
 import "./navStyle.css";
 
 export default function index() {
@@ -9,10 +10,10 @@ export default function index() {
         <div className="sd-logo">Niên luận cơ sở ngành KTPM</div>
         <ul>
           <li>
-            <ModalAbout title="About" content="Vef chung toi" />
+            <ModalAbout />
           </li>
           <li>
-            <ModalAbout title="Help" content="Huong dan su dung" />
+            <ModalHelp title="Help" content="Huong dan su dung" />
           </li>
         </ul>
       </div>

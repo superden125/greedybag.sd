@@ -55,6 +55,10 @@ body {
   animation-fill-mode: forwards;
 }
 
+.sd-icon {
+  margin-right: 5px;
+}
+
 .sd-btn {
   margin: 5px 20px;
   padding: 5px 10px;
@@ -84,7 +88,7 @@ body {
   display: flex;
   position: absolute;
   right: 2rem;
-  width: 10%;
+  width: 15%;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
@@ -123,8 +127,9 @@ body {
 }
 
 .sd-file-upload {
-  position: absolute;
-  left: 30px;
+  /* position: absolute; */
+  display: inline-block;
+  /* left: 20px; */
   margin: 7px auto;
 }
 
