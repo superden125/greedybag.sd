@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import {
-  Button,
-  Input,
-  Table,
-  Form as Forms,
-  Label,
-  FormGroup,
-  Row,
-  Col,
-} from "reactstrap";
+import React, { useState } from "react";
+
+import { Input, Table, Form as Forms, FormGroup, Row, Col } from "reactstrap";
 import FlipMove from "react-flip-move";
 
 import { greedy1, greedy2, greedy3 } from "../../greedy";
@@ -272,9 +263,9 @@ function TableItem(props) {
     opacity: 0.1,
   };
 
-  const leaveState = {
-    opacity: 0,
-  };
+  // const leaveState = {
+  //   opacity: 0,
+  // };
 
   return (
     <div>
@@ -305,7 +296,7 @@ function TableItem(props) {
               <TypeBalo onTypeChange={onTypeChange} type={type} />
             </div>
           </Col>
-          <Col md={3}>
+          <Col md={4}>
             <div className="sd-fade-left-right">
               <InputFile
                 setFileName={setFileName}
@@ -444,7 +435,7 @@ function TableItem(props) {
               ))}
             {isGreedy && (
               <tr className="sd-total-row">
-                <td className="sd-total-title">Total:</td>
+                <td className="sd-total-title">Tổng cộng:</td>
                 <td>{totalValue(items)}</td>
 
                 <td>{totalWeight(items)}</td>

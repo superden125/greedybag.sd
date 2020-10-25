@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, FormGroup, Input, Label } from "reactstrap";
+import { FormGroup, Input, Label } from "reactstrap";
 import ModalType1 from "../ModalType/ModalType1";
 
 export default function TypeBalo(props) {

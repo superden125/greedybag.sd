@@ -1,5 +1,4 @@
 function sort(items) {
-  console.log(items);
   for (var i = 0; i < items.length - 2; i++) {
     for (var j = items.length - 1; j >= i + 1; j--) {
       var t1 = items[j].value / items[j].weight;
@@ -10,7 +9,6 @@ function sort(items) {
       }
     }
   }
-  console.log(items);
 }
 
 function greedy1(itemsList, weight) {

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import classNames from "classnames";
 import * as XLSX from "xlsx";
 import * as FileSaver from "file-saver";
@@ -84,7 +84,7 @@ export default function InputFile(props) {
       /* Convert array of arrays */
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
       /* Update state */
-      console.log(data);
+      // console.log(data);
 
       for (let i = 1; i < data.length; i++) {
         items.push({
@@ -104,7 +104,7 @@ export default function InputFile(props) {
     if (e !== undefined) {
       if (e.target.files[0] !== undefined) {
         e.preventDefault();
-        const items = [];
+
         const reader = new FileReader();
         let ext = getExtFile(e.target.files[0].name);
         setFileName(e.target.files[0].name);
@@ -117,6 +117,8 @@ export default function InputFile(props) {
 
           case "xlsx":
             readFileXlsx(reader);
+            break;
+          default:
             break;
         }
 
@@ -174,10 +176,11 @@ export default function InputFile(props) {
         id="file"
         onChange={(e) => readFile(e)}
         style={{ display: "none" }}
-        value={file}
+        value={file || ""}
         disabled={disabled}
         ref={fileUpload}
       />
+
       <br></br>
       <Label>{fileNames}</Label>
       <br />

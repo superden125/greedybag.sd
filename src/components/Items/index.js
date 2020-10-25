@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import TableItem from "./TableItem";
 import { Container } from "reactstrap";
 
@@ -10,7 +9,5 @@ function index(props) {
     </Container>
   );
 }
-
-index.propTypes = {};
 
 export default index;

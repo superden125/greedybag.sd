@@ -1,14 +1,32 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as XLSX from "xlsx";
+import * as FileSaver from "file-saver";
+
 import imageTxt from "../../asset/images/file-txt.png";
 import imageExcel from "../../asset/images/file-excel.png";
 
 const ModalExample = (props) => {
-  const { className, title, content } = props;
+  const { className } = props;
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
+  const exportTemplate = (fileName) => {
+    let csvData = [{ Name: "", Value: "", Weight: "", Stock: "" }];
+
+    const fileType =
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+    const fileExtension = ".xlsx";
+    const ws = XLSX.utils.json_to_sheet(csvData);
+
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  };
 
   return (
     <div>
@@ -73,6 +91,13 @@ const ModalExample = (props) => {
               <br />
               <img src={imageExcel} alt="excel"></img>
               <br />
+              <Button
+                className="sd-modal-btn btn btn-info"
+                onClick={() => exportTemplate("file-template")}
+              >
+                <FontAwesomeIcon icon="file-download" className="sd-icon" />
+                File Mẫu
+              </Button>
             </li>
             <li>
               Đối với file txt phải có định dạng
