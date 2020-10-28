@@ -34,7 +34,7 @@ export default function InputFile(props) {
 
     reader.onload = async (e) => {
       setIsLoading(true);
-      console.log("load");
+
       const text = e.target.result.split(/\r\n|\n/);
       let weight = parseInt(text[0]);
       text.forEach((line, index) => {
@@ -62,7 +62,7 @@ export default function InputFile(props) {
           });
         }
       });
-      console.log(items);
+
       setInputFile(weight, items);
 
       setIsLoading(false);

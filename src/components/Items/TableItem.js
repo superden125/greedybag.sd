@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Input, Table, Form as Forms, FormGroup, Row, Col } from "reactstrap";
 import FlipMove from "react-flip-move";
 
-import { greedy1, greedy2, greedy3 } from "../../greedy";
+import { greedy } from "../../greedy";
 import InputFile from "./InputFile";
 import TypeBalo from "./TypeBalo";
 import ButtonControl from "./ButtonControl";
@@ -38,9 +38,9 @@ function TableItem(props) {
     // time: "",
   };
 
-  // useEffect(() => {
-  //   console.log(items);
-  // }, [isGreedy]);
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
 
   const addItem = () => {
     setIsGreedy(false);
@@ -159,22 +159,25 @@ function TableItem(props) {
 
   const onSubmit = () => {
     if (!checkType() && !checkValue()) {
-      switch (type.value) {
-        case "1":
-          setItems(greedy1(items, parseInt(weight.value)));
-          setIsGreedy(true);
-          return;
-        case "2":
-          setItems(greedy2(items, parseInt(weight.value)));
-          setIsGreedy(true);
-          return;
-        case "3":
-          setItems(greedy3(items, parseInt(weight.value)));
-          setIsGreedy(true);
-          return;
-        default:
-          return;
-      }
+      // setItems(greedy(items, parseInt(type.value), parseInt(weight.value)));
+      greedy(items, parseInt(type.value), parseInt(weight.value));
+      setIsGreedy(true);
+      // switch (type.value) {
+      //   case "1":
+      //     setItems(greedy1(items, parseInt(weight.value)));
+      //     setIsGreedy(true);
+      //     return;
+      //   case "2":
+      //     setItems(greedy2(items, parseInt(weight.value)));
+      //     setIsGreedy(true);
+      //     return;
+      //   case "3":
+      //     setItems(greedy3(items, parseInt(weight.value)));
+      //     setIsGreedy(true);
+      //     return;
+      //   default:
+      //     return;
+      // }
     }
   };
 

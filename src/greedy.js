@@ -11,9 +11,9 @@ function sort(items) {
   }
 }
 
-function greedy1(itemsList, weight) {
-  const items = [...itemsList];
-  sort(items);
+function greedy1(items, weight) {
+  // const items = [...itemsList];
+  // sort(items);
 
   // const items = itemsList.slice().sort((a, b) => {
   //   return b.value / b.weight - a.value / a.weight;
@@ -26,9 +26,9 @@ function greedy1(itemsList, weight) {
   return items;
 }
 
-function greedy2(itemsList, weight) {
-  const items = [...itemsList];
-  sort(items);
+function greedy2(items, weight) {
+  // const items = [...itemsList];
+  // sort(items);
 
   // const items = itemsList.slice().sort((a, b) => {
   //   return b.value / b.weight - a.value / a.weight;
@@ -44,9 +44,9 @@ function greedy2(itemsList, weight) {
   return items;
 }
 
-function greedy3(itemsList, weight) {
-  const items = [...itemsList];
-  sort(items);
+function greedy3(items, weight) {
+  // const items = [...itemsList];
+  // sort(items);
 
   // const items = itemsList.slice().sort((a, b) => {
   //   return b.value / b.weight - a.value / a.weight;
@@ -62,4 +62,20 @@ function greedy3(itemsList, weight) {
   return items;
 }
 
-export { greedy1, greedy2, greedy3 };
+const greedy = (itemsList, type, weight) => {
+  const items = [...itemsList];
+  sort(items);
+  console.log(items);
+  switch (type) {
+    case 1:
+      return greedy1(items, weight);
+
+    case 2:
+      return greedy2(items, weight);
+
+    case 3:
+      return greedy3(items, weight);
+  }
+};
+
+export { greedy };
