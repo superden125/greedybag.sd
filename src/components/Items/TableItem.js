@@ -326,7 +326,7 @@ function TableItem(props) {
         />
         <h2 className="text-center sd-fade-up-down">Danh Sách Đồ Vật</h2>
 
-        <Table striped className="table-hover sd-fade-up-down">
+        <Table striped className="table-hover sd-fade-up-down sd-table">
           <thead>
             <tr>
               <th style={{ width: "500px" }}>Tên đồ vật</th>

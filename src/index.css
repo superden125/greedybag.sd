@@ -20,8 +20,9 @@
 }
 
 body {
-  background: lightblue;
+  background: #323230;
   font-family: Play-Regular, Arial, Helvetica, sans-serif;
+  color: #f0f0f0;
 }
 
 .myForm {
@@ -176,6 +177,19 @@ body {
 
 .sd-content {
   min-height: 80vh;
+}
+
+.sd-table th,
+td {
+  color: #f0f0f0;
+}
+
+.fa-trash-alt {
+  color: #cacfd2;
+}
+
+.modal-content {
+  background: #303032;
 }
 
 footer {
