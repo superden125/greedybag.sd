@@ -43,16 +43,18 @@ function TableItem(props) {
   }, [items]);
 
   const addItem = () => {
-    setIsGreedy(false);
+    isGreedy && setIsGreedy(false);
     setItems([...items, initItem]);
     setErrors([...errors, initItem]);
   };
 
   const handleWeightChange = (e) => {
+    setIsGreedy(false);
     setWeight({ ...weight, value: e.target.value, errors: "" });
   };
 
   const handleChange = (e, index) => {
+    isGreedy && setIsGreedy(false);
     let newArr = items.map((item, i) => {
       if (index === i) {
         return { ...item, [e.target.name]: e.target.value };
@@ -87,20 +89,31 @@ function TableItem(props) {
         if (
           index === i &&
           e.target.name !== "name" &&
-          e.target.value % 1 !== 0
+          //e.target.value % 1 !== 0
+          isNaN(e.target.value)
         ) {
           return { ...error, [e.target.name]: "Value must be number" };
-        } else {
-          if (
-            index === i &&
-            e.target.name !== "name" &&
-            parseInt(e.target.value) <= 0
-          ) {
-            return { ...error, [e.target.name]: "Value must > 0" };
-          } else {
-            return error;
-          }
+        } //else {
+        if (
+          index === i &&
+          e.target.name !== "name" &&
+          parseInt(e.target.value) <= 0
+        ) {
+          return { ...error, [e.target.name]: "Value must > 0" };
+        } //else {
+
+        if (
+          index === i &&
+          e.target.name === "stock" &&
+          Number.isInteger(e.target.value)
+        ) {
+          //error
+          return { ...error, [e.target.name]: "Stock must be Integer" };
         }
+
+        return error;
+        //}
+        //}
       });
 
       setErrors(newErr);
@@ -111,7 +124,7 @@ function TableItem(props) {
     if (!e.target.value) {
       setWeight({ ...weight, errors: "Required" });
     } else {
-      if (e.target.value % 1 !== 0)
+      if (isNaN(e.target.value))
         setWeight({ ...weight, errors: "Value must be number" });
       else {
         if (parseInt(e.target.value) <= 0)
@@ -160,7 +173,7 @@ function TableItem(props) {
   const onSubmit = () => {
     if (!checkType() && !checkValue()) {
       // setItems(greedy(items, parseInt(type.value), parseInt(weight.value)));
-      greedy(items, parseInt(type.value), parseInt(weight.value));
+      greedy(items, parseInt(type.value), parseFloat(weight.value));
       setIsGreedy(true);
       // switch (type.value) {
       //   case "1":
@@ -216,6 +229,7 @@ function TableItem(props) {
   };
 
   const onTypeChange = (e) => {
+    isGreedy && setIsGreedy(false);
     setType({
       value: e.target.value,
       errors: "",
