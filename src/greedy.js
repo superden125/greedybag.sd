@@ -75,6 +75,9 @@ const greedy = (itemsList, type, weight) => {
 
     case 3:
       return greedy3(items, weight);
+
+    default:
+      return items;
   }
 };
 

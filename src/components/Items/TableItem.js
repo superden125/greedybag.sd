@@ -39,8 +39,8 @@ function TableItem(props) {
   };
 
   useEffect(() => {
-    console.log(items);
-  }, [items]);
+    // /console.log(errors);
+  }, [errors]);
 
   const addItem = () => {
     isGreedy && setIsGreedy(false);
@@ -105,7 +105,7 @@ function TableItem(props) {
         if (
           index === i &&
           e.target.name === "stock" &&
-          Number.isInteger(e.target.value)
+          !Number.isInteger(parseFloat(e.target.value))
         ) {
           //error
           return { ...error, [e.target.name]: "Stock must be Integer" };
@@ -118,29 +118,82 @@ function TableItem(props) {
 
       setErrors(newErr);
     }
+    //validItems(index, e.target.name, e.target.value);
   };
   const handleWeightBlur = (e) => {
     setWeight({ ...weight, touched: true });
-    if (!e.target.value) {
-      setWeight({ ...weight, errors: "Required" });
+    validWeight(e.target.value);
+  };
+
+  const validItems = (index, name, value) => {
+    var valid = true;
+    if (!value) {
+      let newErr = errors.map((error, i) => {
+        if (index === i) {
+          valid = false;
+          return { ...error, [name]: "Required" };
+        } else {
+          return error;
+        }
+      });
+      setErrors(newErr);
     } else {
-      if (isNaN(e.target.value))
-        setWeight({ ...weight, errors: "Value must be number" });
-      else {
-        if (parseInt(e.target.value) <= 0)
-          setWeight({ ...weight, errors: "Value must be > 0" });
-      }
+      let newErr = errors.map((error, i) => {
+        if (index === i && name !== "name" && isNaN(value)) {
+          valid = false;
+          return { ...error, [name]: "Value must be number" };
+        }
+
+        if (index === i && name !== "name" && parseInt(value) <= 0) {
+          valid = false;
+          return { ...error, [name]: "Value must > 0" };
+        }
+
+        if (
+          index === i &&
+          name === "stock" &&
+          !Number.isInteger(parseFloat(value))
+        ) {
+          valid = false;
+          return { ...error, [name]: "Stock must be Integer" };
+        }
+
+        return error;
+      });
+
+      setErrors(newErr);
+      return valid;
     }
+  };
+
+  const validWeight = (value) => {
+    if (!value) {
+      setWeight({ ...weight, errors: "Required" });
+      return false;
+    }
+
+    if (isNaN(value)) {
+      setWeight({ ...weight, errors: "Value must be number" });
+      return false;
+    }
+
+    if (parseInt(value) <= 0) {
+      setWeight({ ...weight, errors: "Value must be > 0" });
+      return false;
+    }
+
+    return true;
   };
 
   const checkValue = () => {
     //false: no error
     //true: have error
     let check = false;
-    if (weight.value === "") {
-      setWeight({ ...weight, errors: "Required" });
+
+    if (!validWeight(weight.value)) {
       check = true;
     }
+
     const newErrors = [...errors];
 
     for (var i = 0; i < items.length; i++) {
@@ -167,30 +220,33 @@ function TableItem(props) {
       newErrors[i] = error;
     }
     setErrors(newErrors);
+    if (haveError()) check = true;
     return check;
+  };
+
+  const haveError = () => {
+    //true: have error
+    //false: no error
+    let prevError = [...errors];
+    var i = 0;
+    while (i < prevError.length) {
+      if (
+        prevError[i].name ||
+        prevError[i].value ||
+        prevError[i].stock ||
+        prevError[i].weight
+      ) {
+        return true;
+      }
+      i++;
+    }
+    return false;
   };
 
   const onSubmit = () => {
     if (!checkType() && !checkValue()) {
-      // setItems(greedy(items, parseInt(type.value), parseInt(weight.value)));
       greedy(items, parseInt(type.value), parseFloat(weight.value));
       setIsGreedy(true);
-      // switch (type.value) {
-      //   case "1":
-      //     setItems(greedy1(items, parseInt(weight.value)));
-      //     setIsGreedy(true);
-      //     return;
-      //   case "2":
-      //     setItems(greedy2(items, parseInt(weight.value)));
-      //     setIsGreedy(true);
-      //     return;
-      //   case "3":
-      //     setItems(greedy3(items, parseInt(weight.value)));
-      //     setIsGreedy(true);
-      //     return;
-      //   default:
-      //     return;
-      // }
     }
   };
 
