@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cb1b020f520b310e47c0f489826335f4",
+    "revision": "a816833fc35af4f1d655758dbeb5f16e",
     "url": "/greedybag.sd/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/greedybag.sd/static/css/2.d9ad5f5c.chunk.css"
   },
   {
-    "revision": "f6f4483c4a15447804e6",
+    "revision": "826033bffd0595d49820",
     "url": "/greedybag.sd/static/css/main.3102ddcf.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/greedybag.sd/static/js/2.4e26b730.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f6f4483c4a15447804e6",
-    "url": "/greedybag.sd/static/js/main.c6d8d64d.chunk.js"
+    "revision": "826033bffd0595d49820",
+    "url": "/greedybag.sd/static/js/main.c3bfe312.chunk.js"
   },
   {
     "revision": "889860abe18ed1d85bb3",
