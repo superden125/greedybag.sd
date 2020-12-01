@@ -86,84 +86,34 @@ function TableItem(props) {
       setErrors(newErr);
     } else {
       let newErr = errors.map((error, i) => {
-        if (
-          index === i &&
-          e.target.name !== "name" &&
-          //e.target.value % 1 !== 0
-          isNaN(e.target.value)
-        ) {
+        if (index === i && e.target.name !== "name" && isNaN(e.target.value)) {
           return { ...error, [e.target.name]: "Value must be number" };
-        } //else {
+        }
         if (
           index === i &&
           e.target.name !== "name" &&
-          parseInt(e.target.value) <= 0
+          parseFloat(e.target.value) <= 0
         ) {
           return { ...error, [e.target.name]: "Value must > 0" };
-        } //else {
+        }
 
         if (
           index === i &&
           e.target.name === "stock" &&
           !Number.isInteger(parseFloat(e.target.value))
         ) {
-          //error
           return { ...error, [e.target.name]: "Stock must be Integer" };
         }
 
         return error;
-        //}
-        //}
       });
 
       setErrors(newErr);
     }
-    //validItems(index, e.target.name, e.target.value);
   };
   const handleWeightBlur = (e) => {
     setWeight({ ...weight, touched: true });
     validWeight(e.target.value);
-  };
-
-  const validItems = (index, name, value) => {
-    var valid = true;
-    if (!value) {
-      let newErr = errors.map((error, i) => {
-        if (index === i) {
-          valid = false;
-          return { ...error, [name]: "Required" };
-        } else {
-          return error;
-        }
-      });
-      setErrors(newErr);
-    } else {
-      let newErr = errors.map((error, i) => {
-        if (index === i && name !== "name" && isNaN(value)) {
-          valid = false;
-          return { ...error, [name]: "Value must be number" };
-        }
-
-        if (index === i && name !== "name" && parseInt(value) <= 0) {
-          valid = false;
-          return { ...error, [name]: "Value must > 0" };
-        }
-
-        if (
-          index === i &&
-          name === "stock" &&
-          !Number.isInteger(parseFloat(value))
-        ) {
-          valid = false;
-          return { ...error, [name]: "Stock must be Integer" };
-        }
-
-        return error;
-      });
-
-      setErrors(newErr);
-      return valid;
-    }
   };
 
   const validWeight = (value) => {
@@ -310,20 +260,20 @@ function TableItem(props) {
     const newErrors = [...errors];
     newErrors.splice(index, 1);
     setErrors(newErrors);
+
+    setIsGreedy(false);
   };
 
   const totalValue = (items) => {
-    return items.reduce(
-      (totalWeight, item) => totalWeight + item.qty * item.value,
-      0
-    );
+    return items
+      .reduce((totalWeight, item) => totalWeight + item.qty * item.value, 0)
+      .toFixed(2);
   };
 
   const totalWeight = (items) => {
-    return items.reduce(
-      (totalWeight, item) => totalWeight + item.qty * item.weight,
-      0
-    );
+    return items
+      .reduce((totalWeight, item) => totalWeight + item.qty * item.weight, 0)
+      .toFixed(2);
   };
 
   const notVisibleState = {
